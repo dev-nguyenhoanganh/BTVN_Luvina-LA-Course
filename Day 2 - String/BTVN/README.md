@@ -17,5 +17,4 @@
 ### 4. Sắp xếp các số lẻ tăng dần nhưng giá trị khác giữ nguyên vị trí
 
 ### 5. Sắp xếp các số dương tăng dần, các số âm giữ nguyên vị trí
-
 ### 6. Sắp xếp các số dương tăng dần, các số âm giảm dần.   
