@@ -32,6 +32,7 @@ public class BTVN1_19_NguyenHoangAnh_Bai2 {
 		int[][] bufferIndex = findLength(arr);
 		int max[] = findMaxLength(bufferIndex);
 		
+		// In kết quả
 		if(max[1] != 0) {
 			System.out.println("Số đoạn = " + max[1]);
 		}
@@ -69,7 +70,7 @@ public class BTVN1_19_NguyenHoangAnh_Bai2 {
 	 * 
 	 * @param arr
 	 * @return
-	 *    bufferLength[Vị trí][Kích thước]
+	 *    bufferIndex[Vị trí][Kích thước]
 	 */
 	private static int[][] findLength(int arr[]) {
 		int bufferIndex[][] = new int[2][arr.length];

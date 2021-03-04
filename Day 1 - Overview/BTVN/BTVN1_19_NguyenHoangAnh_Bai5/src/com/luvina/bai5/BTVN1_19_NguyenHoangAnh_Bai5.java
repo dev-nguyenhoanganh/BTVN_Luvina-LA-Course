@@ -19,11 +19,11 @@ public class BTVN1_19_NguyenHoangAnh_Bai5 {
 		int arr[] = {1, 8, 5, 7, 3, 11, 6, 1, 11, 5};
 		
 		System.out.println("Mảng ban đầu : "
-						  + Arrays.toString(arr));
+		                + Arrays.toString(arr));
 		
 		if(replaceMaxAndMin(arr)) {
-			System.out.println("Mảng sau khi đổi giá trị : "
-							  + Arrays.toString(arr));
+		    System.out.println("Mảng sau khi đổi giá trị : "
+		                + Arrays.toString(arr));
 		}
 	}
 	

@@ -63,7 +63,7 @@ public class BTVN1_19_NguyenHoangAnh_Bai4 {
 	private static int binarySearch(int[] arr, int value) {
 		int left = 0, right = arr.length - 1;
         while (left <= right) {
-        	int m = (right + left) / 2;
+            int m = (right + left) / 2;
         	
             if (arr[m] == value)
                 return m; 

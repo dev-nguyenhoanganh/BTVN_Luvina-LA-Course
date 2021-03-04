@@ -16,9 +16,10 @@ public class BTVN1_19_NguyenHoangAnh_Bai1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int arr[] = {10, 5, 10, 5, 1, 5, 1, 9, 1}; 
+		int arr[] = {10, 5, 10, 5, 1, 5, 1, 9, 1};
+		System.out.println("Mảng ban đầu : +\n" + Arrays.toString(arr));
+		
 		findMaxArr(arr);
-
 	}
 	
 	public static void findMaxArr(int[] arr) {
@@ -34,7 +35,6 @@ public class BTVN1_19_NguyenHoangAnh_Bai1 {
             }
             if(max < arr[i]) {
                 max = arr[i];
-                Arrays.fill(bufferIndex, -1);
                 j = 0;
                 bufferIndex[j++] = i; 
             }
@@ -49,7 +49,7 @@ public class BTVN1_19_NguyenHoangAnh_Bai1 {
         } else {
             System.out.println("Giá trị lớn nhất: " + max);
             System.out.print("Vị trí : ");
-            for (int i = 0; i < bufferIndex.length; i++) {
+            for (int i = 0; i < j; i++) {
                 if(bufferIndex[i] == -1) {
                     break;
                 }

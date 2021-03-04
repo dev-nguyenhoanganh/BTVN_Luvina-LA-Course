@@ -29,27 +29,32 @@ public class BTVN1_19_NguyenHoangAnh_Bai6 {
 	            "Đinh Văn Bình",
 	            "Nguyễn Trần Bình",
 	            "Tạ Đình Huy" };
-	    
+
+	    // Câu 1
 	    System.out.println("Câu 1) Tên trước khi chuẩn hóa: \n" + name);
 		
 	    name = trim(name);
 	    System.out.println("\nTên sau khi chuẩn hóa: \n" + name);
 		
+	    // Câu 2
 	    System.out.println("\nCâu 2) Tách tên thành Họ, Tên đệm, Tên : ");
 	    String[] result = splitName(name);
 	    System.out.println( "Họ      : " + result[0] + "\n"
-                + "Tên đệm : " + result[1] + "\n"
-                + "Tên     : " + result[2]);
-	    
+                          + "Tên đệm : " + result[1] + "\n"
+                          + "Tên     : " + result[2]);
+
+	    // Câu 3
 	    String arr[] = findLongest(" a bb ccc dddd eeee");
 	    System.out.println("\nCâu 3) Tìm từ dài nhất : \n" 
 	                      + Arrays.toString(arr));
-	    
+
+	    // Câu 4
 	    arr = findByName(listStudent, nameStudent);
 	    System.out.println("\nCâu 4) Tìm sinh viên theo tên : \""
 	                     + nameStudent + "\"" + "\n"
 	                     + Arrays.toString(arr));
-	    
+
+	    // Câu 5
 	    System.out.println("\nCâu 5) Sắp xếp danh sách học sinh : ");
 	    orderByName(listStudent);
 	}
@@ -64,11 +69,12 @@ public class BTVN1_19_NguyenHoangAnh_Bai6 {
 	public static String trim(String name) {
 		String result = "";
 		result = name.trim();
+		result = result.replaceAll("\\s+", " ");
 		
-		while(result.contains("  ") || result.contains("\t")) {
-			result = result.replaceAll("  ", " ");
-			result = result.replaceAll("\t", "");
-		}
+//		while(result.contains("  ") || result.contains("\t")) {
+//			result = result.replaceAll("  ", " ");
+//			result = result.replaceAll("\t", "");
+//		}
 		return result;
 	}
 	
@@ -171,7 +177,6 @@ public class BTVN1_19_NguyenHoangAnh_Bai6 {
 			for (int j = 0; j < 3; j++) {
 				System.out.print(listName[i][j] + " ");
 			}
-			
 		}
 	}
 	
