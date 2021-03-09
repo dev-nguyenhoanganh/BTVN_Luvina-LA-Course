@@ -28,7 +28,7 @@ public class BTVN1_19_NguyenHoangAnh_Bai3 {
 			if(arr[i] < arr[i - 1]) {
 				arr[i] = arr[i - 1];
 				arr[i - 1] = number;
-			}
+			} else break; 
 		}
 	}
 }

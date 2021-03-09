@@ -1,8 +1,8 @@
 # Buổi 2 : String 
 
-### 1. Cho int x=9, kiểm tra x có phải là số nguyên tố hay ko? 
+### 1. Cho int x = 9, kiểm tra x có phải là số nguyên tố hay ko? 
 
-### 2. Cho `int [] A={1, 3, 4, 5, 6, 8}`
+### 2. Cho `int [] A = {1, 3, 4, 5, 6, 8}`
 
 2.1. Kiểm tra xem mảng A có tạo thành dãy tăng dần ko?
 

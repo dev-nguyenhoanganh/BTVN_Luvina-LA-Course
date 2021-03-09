@@ -14,7 +14,7 @@ public class BTVN2_19_NguyenHoangAnh_Bai1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int number = 0;
+		int number = 4;
 		
 		if(isPrimeNumber(number)) 
 			System.out.println("Là số nguyên tố");
@@ -28,8 +28,9 @@ public class BTVN2_19_NguyenHoangAnh_Bai1 {
 		else if (number == 2 || number == 3)
 			return true;
 		
-		for (int i = 2; i < Math.sqrt(number); i++) {
-			if(number % i == 0) return false;
+		for (int i = 2; i <= number / 2; i++) {
+			if(number % i == 0) 
+				return false;
 		}
 		return true;
 	}
