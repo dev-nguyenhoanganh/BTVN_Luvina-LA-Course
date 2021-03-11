@@ -20,26 +20,28 @@ public class BTVN2_19_NguyenHoangAnh_Bai6 {
 	}
 
 	public static void sort(int[] arr) {
-		int temp;
+		int temp, index;
 		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] < 0)
+			index = i;
+			temp  = arr[i];
+			if (temp < 0)
 				for (int j = i; j < arr.length; j++) {
 					if (arr[j] >= 0) continue;
-					if (arr[j] > arr[i]) {
+					if (arr[j] > temp) {
 						temp   = arr[j];
-						arr[j] = arr[i];
-						arr[i] = temp;
+						index  = j;
 					}
 				}
 			else 
 				for (int j = i; j < arr.length; j++) {
 					if (arr[j] < 0) continue;
-					if (arr[j] < arr[i]) {
+					if (arr[j] < temp) {
 						temp   = arr[j];
-						arr[j] = arr[i];
-						arr[i] = temp;
+						index  = j;
 					}
 				}
+			arr[index] = arr[i];
+			arr[i]     = temp;
 		}
 	}
 }
