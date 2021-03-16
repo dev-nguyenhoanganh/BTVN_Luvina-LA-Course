@@ -1,11 +1,11 @@
 /**
  * @Project_Name 19_NguyenHoangAnh_Bai34
  */
-package com.luvina;
+package com.luvina.bai56;
 
 /**
  * @author Hoang Anh
- * @since 15 thg 3, 2021
+ * @since 11 thg 3, 2021
  * @version 1.0
  */
 public class Student implements Comparable<Student> {

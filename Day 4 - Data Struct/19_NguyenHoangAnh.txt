@@ -1,0 +1,513 @@
+
+// ---------------------- Class Student ----------------------
+
+public class Student implements Comparable<Student> {
+	String name;
+	String score;
+	int    age;
+	
+	public Student() {
+		this.name  = null;
+		this.score = null;
+		this.age   = 0;
+	}
+	
+	public Student(String name, String score, int age) {
+		this.name  = name;
+		this.score = score;
+		this.age   = age;
+	}
+	
+	@Override
+	public String toString() {
+		return "Tên  : " + this.name  + "\n"
+			+  "Điểm : " + this.score + "\n"
+			+  "Tuổi : " + this.age   + "\n";
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		Student student = (Student) other;
+		boolean name = this.name.equals( student.getName() );
+		boolean age  = this.age == student.getAge();
+		return name && age;
+	}
+	
+	@Override
+	public int compareTo(Student o) {
+		return this.age - o.age;
+	}
+	
+	// ---------------------- GETTER ----------------------
+	public String getName() {
+		return name;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public int getAge() {
+		return age;
+	}
+}
+
+************************  Bài 1 + 2  ******************************
+
+public class Main {
+
+	public static void main(String[] args) {
+		// Bài 1
+		LinkList<String> list = new LinkList<String>(); 
+		String item = "4. Thêm vào dưới";
+		
+		list.insertBottom("1. Thêm vào dưới");
+		list.insertTop   ("2. Thêm vào trên");
+		list.insertTop   ("3. Thêm vào trên");
+		list.insertBottom("4. Thêm vào dưới");
+		list.printList();
+		
+		if(list.remove(item)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		
+		list.printList();
+		list.clear();
+		if(list.remove(item)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		list.printList();
+		
+		// Bài 2
+		LinkList<Student> studentList = new LinkList<Student>(); 
+		
+		System.err.println("\n=================================\n");
+		
+		Student student1 = new Student("[1] Hoàng Anh" , "A" , 20);
+		Student student2 = new Student("[2] Hồng Quang", "B+", 25);
+		Student student3 = new Student("[3] Toàn Phong", "C-", 21);
+		Student student4 = new Student("[4] Trung Quân", "C-", 21);
+		
+		studentList.insertBottom(student1);
+		studentList.insertTop   (student2);
+		studentList.insertTop   (student3);
+		studentList.insertBottom(student4);
+		studentList.printList();
+		
+		if(studentList.remove(student4)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		
+		studentList.printList();
+		studentList.clear();
+		if(studentList.remove(student4)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		studentList.printList();
+	}
+}
+
+ -----------   Class LinkList   -----------------
+
+public class LinkList<T> {
+	Node<?> first;
+	Node<?> last;
+	
+	public LinkList(T value) {
+		first = last = new Node<T>(value);
+	}
+	
+	public LinkList() {
+		first = last = null;
+	}
+
+	public boolean isEmpty() {
+		return first == null;
+	}
+
+	public void insertTop(T value) {
+		if(isEmpty()) 
+			first = last = new Node<T>(value);
+		else 
+			first = new Node<T>(value, first);
+	}
+	
+	public void insertBottom(T value) {
+		if(isEmpty()) 
+			first = last = new Node<T>(value);
+		else {
+			last.next = new Node<T>(value);
+			last      = last.next;
+		}
+	}
+	
+	public Node<?> search(T value) {
+		if(isEmpty()) return null;
+		
+		Node<?> current = first;
+		while (!current.value.equals(value)) {
+			current = current.next;
+		}
+		return current;
+	}
+	
+	public Node<?> searchPrevious(T value) {
+		if(isEmpty()) return null;
+		
+		Node<?> previous = first;
+		
+		while(!previous.next.getValue().equals(value)) {
+			previous = previous.next;
+		}
+		return previous;
+	}
+	
+	public boolean remove(T value) {
+		if(isEmpty()) return false;
+		
+		Node<?> current = search(value);
+		if(current == null) return false;
+
+		if(current == first) {
+			first = first.next;
+			System.gc();
+		} else {
+			Node<?> preNode = searchPrevious(value);
+			preNode.next = current.next;
+			System.gc();
+		}
+		return true;
+	}
+	
+	public void clear() {
+		first = last = null;
+		System.gc();
+	}
+	
+	public void printList() {
+		if(isEmpty()) {
+			System.out.println("Danh sách rỗng");
+			return;
+		}
+		
+		Node<?> temp = first;
+		while (temp != null) {
+			System.out.println(temp.value);
+			temp = temp.next;
+		}
+		System.out.print("\n");
+	}
+}
+
+ -----------   Class Node   -----------------
+
+public class Node<Type> {
+	Type value;
+	Node<?> next;
+	
+	public Node(Type value) {
+		this(value, null);
+	}
+	
+	public Node(Type value, Node<?> next) {
+		this.value = value;
+		this.next  = next;
+	}
+
+	public Type getValue() {
+		return value;
+	}
+
+	public Node<?> getNext() {
+		return next;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Node<?>)
+			if ( ((Node<?>) other).value.equals(value) )
+				return true;
+		return false;
+	}
+}
+
+
+************************  Bài 3 + 4   ******************************
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+        // Bài 3
+        ArrayList<Double> list = new ArrayList<Double>();
+		
+		list.add(10.0);
+		list.add(9.5);
+		list.add(7.5);
+		list.add(8.5);
+		printList(list);
+		
+		System.out.println(list.indexOf(9.5));
+		list.sort(increase);
+		printList(list);
+		
+		
+		System.out.println("\n=============================\n");
+		
+        // Bài 4
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		
+		Student student1 = new Student("[1] Hoàng Anh" , "A" , 20);
+		Student student2 = new Student("[2] Hồng Quang", "B+", 25);
+		Student student3 = new Student("[3] Toàn Phong", "C-", 21);
+		Student student4 = new Student("[4] Trung Quân", "C-", 21);
+		
+		studentList.add(student1);
+		studentList.add(student2);
+		studentList.add(student3);
+		studentList.add(student4);
+		printList(studentList);
+		
+		if(studentList.remove(student3)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		
+		printList(studentList);
+		studentList.clear();
+		if(studentList.remove(student4)) 
+			System.out.println("Xóa thành công");
+		else 
+			System.out.println("Xóa không thành công");
+		printList(studentList);
+	}
+
+	public static Comparator<Double> increase = new Comparator<Double>() {
+
+		@Override
+		public int compare(Double o1, Double o2) {
+			double result = o1 - o2;
+			if(result > 0) return 1;
+			if(result < 0) return -1;
+			return 0;
+		}
+	};
+	
+	public static void printList(ArrayList<?> list) {
+		for (Object object : list) {
+			System.out.println(object.toString());
+		}
+		System.out.println("\n");
+	}
+}
+
+************************  Bài 5  ******************************
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		PriorityQueue<Student> studentList = new PriorityQueue<Student>();
+		
+		Student student1 = new Student("[1] Hoàng Anh" , "A" , 20);
+		Student student2 = new Student("[2] Hồng Quang", "B+", 25);
+		Student student3 = new Student("[3] Toàn Phong", "C-", 21);
+		Student student4 = new Student("[4] Trung Quân", "C-", 21);
+		
+		studentList.add(student1);
+		studentList.add(student2);
+		studentList.add(student3);
+		studentList.add(student4);
+		printlist(studentList);
+		
+		System.out.println("-----------------------");
+		// Print top of queue
+		System.out.println(studentList.peek());
+		
+		System.out.println("-----------------------");
+		// Print top and remove it
+		System.out.println(studentList.poll());
+		
+		System.out.println("-----------------------");
+		// Print top of queue
+		System.out.println(studentList.peek());
+	}
+
+	public static void printlist(PriorityQueue<?> list) {
+		for (Object object : list) {
+			System.out.println(object.toString());
+		}
+	}
+}
+
+************************  Bài 6 + 7  ******************************
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("-------------------------------------");
+		System.out.println("               Bài 6                 ");
+		
+		HashSet<Integer> setNumber = new HashSet<>();
+		int num = 10;
+		
+		setNumber.add(10) ;
+		setNumber.add(19) ;
+		setNumber.add(15) ;
+		setNumber.add(0)  ;
+		setNumber.add(-15);
+		setNumber.add(num);
+		
+		System.out.println("Danh sách hiện tại: ");
+		printlist(setNumber);
+
+		System.out.println();
+		if(!setNumber.add(10)) {
+			System.out.println("Thêm không thành công số : " + num);
+		}
+		
+		System.out.println("Xóa số " + num);
+		setNumber.remove(num);
+		printlist(setNumber);
+		
+		System.out.println();
+		System.out.println("HashCode() : " + setNumber.hashCode());
+		
+		System.out.println(setNumber.contains(-15));
+		
+		// =======================================================
+		System.out.println("-------------------------------------");
+		System.out.println("               Bài 7                 ");
+		
+		HashSet<Student> set = new HashSet<>();
+		
+		Student student1 = new Student("[1] Hoàng Anh" , "A" , 20);
+		Student student2 = new Student("[2] Hồng Quang", "B+", 25);
+		Student student3 = new Student("[3] Toàn Phong", "C-", 21);
+		Student student4 = new Student("[4] Trung Quân", "C-", 21);
+		Student student5 = new Student("[1] Hoàng Anh" , "A" , 20);
+		
+		set.add(student1);
+		set.add(student2);
+		set.add(student3);
+		set.add(student4);
+		
+		printlist(set);
+		
+		// Kiểm tra contains là kiểm tra hashCode
+		System.out.println("Student 1 - HashCode : " + student1.hashCode());
+		System.out.println("Student 5 - HashCode : " + student5.hashCode());
+		if( set.contains(student5) ) 
+			System.out.println("Tồn tại học sinh này trong danh sách!");
+		else 
+			System.out.println("Chưa tồn tại học sinh này trong danh sách!");
+		
+		if(set.add(student5)) 
+			System.out.println("Thêm thành công");
+		else 
+			System.out.println("Thêm thất bại");
+		
+		printlist(set);
+	}
+
+	public static void printlist(HashSet<?> set) {
+		for (Object object : set) {
+			System.out.println(object.toString());
+		}
+	}
+}
+
+
+************************  Bài 8 + 9  ******************************
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("-------------------------------------");
+		System.out.println("               Bài 8                 ");
+		
+		TreeSet<Integer> setNumber = new TreeSet<>();
+		int num = 10;
+		
+		setNumber.add(10) ;
+		setNumber.add(19) ;
+		setNumber.add(15) ;
+		setNumber.add(0)  ;
+		setNumber.add(-15);
+		setNumber.add(num);
+		
+		System.out.println("Danh sách hiện tại: ");
+		printlist(setNumber);
+
+		System.out.println();
+		if(!setNumber.add(10)) {
+			System.out.println("Thêm không thành công số : " + num);
+		}
+		
+		System.out.println("Xóa số " + num);
+		setNumber.remove(num);
+		printlist(setNumber);
+		
+		System.out.println();
+		System.out.println("HashCode() : " + setNumber.hashCode());
+		
+		System.out.println(setNumber.contains(-15));
+		
+		
+		
+		// =======================================================
+		System.out.println("-------------------------------------");
+		System.out.println("               Bài 9                 ");
+		
+		SortedSet<Student> set = new TreeSet<>();
+		
+		Student student1 = new Student("[1] Hoàng Anh" , "A" , 20);
+		Student student2 = new Student("[2] Hồng Quang", "B+", 25);
+		Student student3 = new Student("[3] Toàn Phong", "C-", 21);
+		Student student4 = new Student("[4] Trung Quân", "C-", 21);
+		Student student5 = new Student("[1] Hoàng Anh" , "A" , 20);
+		
+		set.add(student1);
+		set.add(student2);
+		set.add(student3);
+		
+		// False vì tuổi bằng nhau 
+		// Mà compareTo() so sánh 2 tuổi với nhau
+		System.out.println(set.add(student4));
+		
+		printlist(set);
+		
+		if( set.contains(student5) ) 
+			System.out.println("Tồn tại học sinh này trong danh sách!");
+		else 
+			System.out.println("Chưa tồn tại học sinh này trong danh sách!");
+		
+		if(set.add(student5)) 
+			System.out.println("Thêm thành công");
+		else 
+			System.out.println("Thêm thất bại");
+		
+		printlist(set);
+		
+	}
+
+	public static void printlist(SortedSet<?> set) {
+		System.out.println("\nDanh sách (Đã sắp xếp)");
+		for (Object object : set) {
+			System.out.println(object.toString());
+		}
+		System.out.println();
+	}
+}

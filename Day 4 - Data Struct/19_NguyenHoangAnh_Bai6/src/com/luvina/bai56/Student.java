@@ -1,11 +1,11 @@
 /**
  * @Project_Name 19_NguyenHoangAnh_Bai34
  */
-package com.luvina;
+package com.luvina.bai56;
 
 /**
  * @author Hoang Anh
- * @since 15 thg 3, 2021
+ * @since 11 thg 3, 2021
  * @version 1.0
  */
 public class Student implements Comparable<Student> {
@@ -34,7 +34,10 @@ public class Student implements Comparable<Student> {
 	
 	@Override
 	public boolean equals(Object other) {
-		return this.name.equals( ((Student) other).getName() );
+		Student student = (Student) other;
+		boolean name = this.name.equals( student.getName() );
+		boolean age  = this.age == student.getAge();
+		return name && age;
 	}
 	
 	@Override
